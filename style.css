@@ -1,58 +1,71 @@
- body {
-  font-family: 'Segoe UI', sans-serif;
-  background: #f0f4ff;
+* {
   margin: 0;
-  padding: 20px;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: 'Segoe UI', sans-serif;
+  background-color: #f4f7fa;
   color: #333;
-}
-
-h1.blob {
-  background: linear-gradient(45deg, #6e8efb, #a777e3);
-  color: white;
-  padding: 15px;
-  border-radius: 20px;
-  text-align: center;
-  font-size: 2em;
-}
-
-.subtitle {
-  text-align: center;
-  margin-top: -10px;
-  color: #555;
-}
-
-.form-section, .list-section {
-  max-width: 500px;
-  margin: 30px auto;
-  background: white;
+  line-height: 1.6;
   padding: 20px;
-  border-radius: 16px;
-  box-shadow: 0 2px 8px rgba(0,0,0,0.1);
 }
 
-input, button {
-  display: block;
-  width: 100%;
-  margin: 10px 0;
-  padding: 10px;
-  font-size: 1em;
+.header {
+  text-align: center;
+  padding: 20px;
+  background: linear-gradient(to right, #6e8efb, #a777e3);
+  color: white;
+  border-radius: 12px;
+  margin-bottom: 30px;
 }
 
-button {
+.profile-pic {
+  width: 120px;
+  height: 120px;
+  border-radius: 50%;
+  object-fit: cover;
+  border: 3px solid white;
+  margin-bottom: 10px;
+}
+
+section {
+  background-color: white;
+  padding: 20px;
+  margin: 20px auto;
+  max-width: 700px;
+  border-radius: 12px;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.05);
+}
+
+h2 {
+  color: #5e60ce;
+  margin-bottom: 10px;
+}
+
+ul {
+  list-style: square;
+  margin-left: 20px;
+}
+
+.btn {
+  display: inline-block;
+  padding: 10px 20px;
   background-color: #6e8efb;
   color: white;
-  border: none;
-  cursor: pointer;
   border-radius: 8px;
+  text-decoration: none;
+  font-weight: bold;
 }
 
-button:hover {
-  background-color: #5a75d4;
+.btn:hover {
+  background-color: #4f72e1;
 }
 
-#eventList li {
-  background: rgb(245, 242, 63);
-  padding: 10px;
-  border-radius: 10px;
-  margin-bottom: 10px;
+.footer {
+  text-align: center;
+  padding: 15px;
+  margin-top: 30px;
+  color: #777;
 }
