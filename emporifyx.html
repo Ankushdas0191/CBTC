@@ -1,0 +1,194 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>EmporifyX</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: "Segoe UI", sans-serif;
+    }
+
+    body {
+      background: #f8f8f8;
+      color: #333;
+    }
+
+    header {
+      background-color: #212529;
+      color: white;
+      padding: 20px 40px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    header h1 {
+      font-size: 1.8rem;
+    }
+
+    .cart-btn {
+      background: #ffc107;
+      border: none;
+      padding: 8px 15px;
+      border-radius: 8px;
+      cursor: pointer;
+      font-weight: bold;
+    }
+
+    .container {
+      max-width: 1200px;
+      margin: 30px auto;
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: 20px;
+      padding: 0 20px;
+    }
+
+    .product-card {
+      background: white;
+      padding: 15px;
+      border-radius: 12px;
+      box-shadow: 0 4px 8px rgba(0,0,0,0.06);
+      transition: 0.3s;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+
+    .product-card img {
+      width: 100%;
+      max-width: 200px;
+      border-radius: 10px;
+    }
+
+    .product-card h3 {
+      margin: 10px 0;
+      color: #212529;
+    }
+
+    .product-card p {
+      color: #777;
+    }
+
+    .product-card button {
+      margin-top: auto;
+      padding: 10px 20px;
+      border: none;
+      background: #212529;
+      color: white;
+      border-radius: 8px;
+      cursor: pointer;
+    }
+
+    .cart-popup {
+      position: fixed;
+      top: 70px;
+      right: 20px;
+      background: white;
+      padding: 20px;
+      border-radius: 12px;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.2);
+      max-width: 300px;
+      display: none;
+      z-index: 1000;
+    }
+
+    .cart-popup h3 {
+      margin-bottom: 10px;
+    }
+
+    .cart-popup ul {
+      list-style: none;
+      padding: 0;
+      max-height: 200px;
+      overflow-y: auto;
+    }
+
+    .cart-popup li {
+      margin-bottom: 10px;
+      font-size: 0.95rem;
+    }
+
+    .footer {
+      text-align: center;
+      padding: 20px;
+      background: #212529;
+      color: white;
+      margin-top: 30px;
+    }
+  </style>
+</head>
+<body>
+
+  <header>
+    <h1>EmporifyX 🛒</h1>
+    <button class="cart-btn" onclick="toggleCart()">Cart (<span id="cart-count">0</span>)</button>
+  </header>
+
+  <div class="container" id="product-container">
+    <!-- Products will be loaded here -->
+  </div>
+
+  <div class="cart-popup" id="cart-popup">
+    <h3>Your Cart</h3>
+    <ul id="cart-items"></ul>
+  </div>
+
+  <div class="footer">© 2025 EmporifyX. All rights reserved.</div>
+
+  <script>
+    const products = [
+      { id: 1, name: "Wireless Earbuds", price: 1999, image: "https://assets.myntassets.com/w_412,q_60,dpr_2,fl_progressive/assets/images/25776410/2024/5/24/8faf3a17-ac84-4e51-84b2-87ed5d4aae7e1716533516608-NOISE-Aura-Buds-Truly-Wireless-Earbuds-with-60H-Playtime-and-1.jpg" },
+      { id: 2, name: "Smart Watch", price: 3499, image: "https://m.media-amazon.com/images/I/71CVv+-eVWL._UY1000_.jpg" },
+      { id: 3, name: "Bluetooth Speaker", price: 1499, image: "https://m.media-amazon.com/images/I/81oRzXfs2zL._UF1000,1000_QL80_.jpg" },
+      { id: 4, name: "Backpack", price: 899, image: "https://images-na.ssl-images-amazon.com/images/I/91kh7Y9VYNL._AC_SL1500_.jpg" },
+      { id: 5, name: "Gaming Mouse", price: 1299, image: "https://images-na.ssl-images-amazon.com/images/I/41hZo7CmxuS._SL500_._AC_SL500_.jpg" },
+    ];
+
+    const productContainer = document.getElementById("product-container");
+    const cartPopup = document.getElementById("cart-popup");
+    const cartItemsList = document.getElementById("cart-items");
+    const cartCount = document.getElementById("cart-count");
+
+    let cart = [];
+
+    products.forEach(product => {
+      const card = document.createElement("div");
+      card.className = "product-card";
+      card.innerHTML = `
+        <img src="${product.image}" alt="${product.name}">
+        <h3>${product.name}</h3>
+        <p>₹${product.price}</p>
+        <button onclick="addToCart(${product.id})">Add to Cart</button>
+      `;
+      productContainer.appendChild(card);
+    });
+
+    function addToCart(id) {
+      const product = products.find(p => p.id === id);
+      cart.push(product);
+      cartCount.innerText = cart.length;
+      updateCartUI();
+    }
+
+    function toggleCart() {
+      cartPopup.style.display = cartPopup.style.display === "block" ? "none" : "block";
+    }
+
+    function updateCartUI() {
+      cartItemsList.innerHTML = "";
+      cart.forEach((item, index) => {
+        const li = document.createElement("li");
+        li.textContent = `${item.name} - ₹${item.price}`;
+        cartItemsList.appendChild(li);
+      });
+    }
+  </script>
+
+</body>
+</html>
